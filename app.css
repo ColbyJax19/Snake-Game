@@ -1,0 +1,58 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.snake{
+    background-color: brown;
+}
+
+
+.title{
+    color: black;
+}
+
+
+/* .game-container{
+    height: 100vmin;
+    width: 100vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.apple{
+background-color: red;
+}
+
+
+.title, .score, .startBtn{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+
+.grid {
+    width: fit-content;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(10, 2rem);
+    grid-template-rows: repeat(10, 2rem); 
+    /* Assign CSS in DOM (at least gtc/gtr) */
+}
+
+.box {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
