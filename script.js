@@ -1,135 +1,139 @@
-let snake = [2,1,0];
-let score = document.querySelector('.score span')
+let currentSnake = [50,49,48];
+let scoreHeader = document.querySelector('.score span')
 let start = document.querySelector('.start')
 let boxes = document.querySelectorAll('.box')
-console.log(boxes)
-let direction = 1
-let interval = 0
-let apple = 0;
-
-
-start.addEventListener('click', init)
-
 let snakeId = document.getElementById('snake')
+let score = 0;
+let direction = 1
+let rowLength = Math.sqrt(boxes.length);
+let interval;
+let speedUp = .5;
+let apple = 0;
+let tail;
+
+
+
 
 function init(){
-    boxes.forEach(function(el){
-        el.classList.remove('apple', snake)
-    })
-
-    
-    setInterval(() => {
-    }, 500);
-    moveSnake()
+    //Clear Board on init to enable game restarting
+    currentSnake.forEach(index => boxes[index].classList.remove('snake'))
+    boxes[apple].classList.remove('apple')
+    clearInterval(interval)
+    console.log(interval)
+    interval = 1000;
     randomApple()
-    generateSnake()
-}
-
-
-//Generate Snake
-function generateSnake(){
-currentSnake = snake.forEach(i => boxes[i].setAttribute('class', 'snake'));
-
-}
-
-
-//Generate Random Apple
-function randomApple(){
-        if(!boxes[apple].classList.contains('snake')){    // the random apple array does not include class of 'snake'
+    setInterval(moveSnake, interval)
+    console.log(interval)
+    }
+    
+    
+    //Generate Snake
+    function generateSnake(){
+        currentSnake = currentSnake.forEach(i => boxes[i].setAttribute('class', 'snake'));
+        console.log(currentSnake)
+    }
+    
+    
+    //Generate Random Apple
+    function randomApple(){
             apple = Math.floor(Math.random() * boxes.length)
-            boxes[apple].setAttribute('class', 'apple')
+            boxes[apple].classList.add('apple')
             console.log(boxes[apple])
+    }
+    
+    
+
+    function moveSnake() {
+        const tail = currentSnake.pop()
+        boxes[tail].classList.remove('snake')
+        currentSnake.unshift(currentSnake[0] + direction)
+        boxes[currentSnake[0]].classList.add('snake')
+        
+        //Apple Eating
+        if(boxes[currentSnake[0]].classList.contains('apple')){
+            // debugger
+            //remove classlist of apple
+            boxes[currentSnake[0]].classList.remove('apple');
+            //add class of snake to end of currentsnake
+            boxes[tail].classList.add('snake');
+            //push to end of snake
+            currentSnake.push(tail)
+            //Add score
+            score++
+            scoreHeader.textContent = score;
+            //generate new apple
+            randomApple()
+            interval = interval * speedUp
+            setInterval(moveSnake, interval)
+            console.log(interval)
         }
-}
+    }
+    
+    
+    
+    // function responding to keyboard event
+    function control(e) {
+        // boxes[currentSnake].classList.remove('snake')
+        if (e.key !== undefined) {
+            const pressedKey = e.key;
+            switch (pressedKey) {
+                case "ArrowLeft":
+                    direction = -1
+                    break;
+                    case "ArrowUp":
+                        direction = -rowLength
+                        break;
+                        case "ArrowRight":
+                            direction = +1
+                            break;
+                            case "ArrowDown":
+                                direction = +rowLength
+                            }
+                        }
+                    }
+                    
+                    
+                    
+                    
+                    
+                    // Movement Functionality
+                    document.addEventListener("keyup", control);
+                    //Start Game
+                    start.addEventListener('click', init)
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                
+                
+                
+                
+                
+                
+                
+                
+                
 
 
 
 
-// function moveSnake(boxes){
-//     let tail = snake.pop();
-//     boxes[tail].classList.remove('snake');
-//     snake.unshift(snake[0] + direction);
-//     boxes[snake[0]].classList.add('snake');
-// }
+                
+                //NOTES:
 
-const tail = currentSnake.pop()
-squares[tail].classList.remove('snake')
-currentSnake.unshift(currentSnake[0] + direction)
-
-function moveSnake(boxes) {
-
-    // boxes[tail].classList.remove("snake");
-    // snake.unshift(snake[0] + direction);
-    // // movement ends here
-    // eatApple(boxes, tail);
-    // boxes[snake[0]].classList.add("snake");
-  }
+                
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//NOTES:
-
-// // Movement Functionality
-// document.addEventListener("keyup", control);
-
-// // function responding to keyboard event
-// function control(e) {
-//         if (e.key !== undefined) {
-//               const pressedKey = e.key;
-//               switch (pressedKey) {
-//                     case "ArrowLeft":
-//                       moveSnake();
-//                       break;
-//                     case "ArrowUp":
-//                       console.log("Up arrow pressed");
-//                       break;
-//                     case "ArrowRight":
-//                       console.log("Right arrow pressed");
-//                       break;
-//                     case "ArrowDown":
-//                       console.log("Down arrow pressed");
-//                   }
-//                 }
-//             }
-            
-
-
-
+                
             
             
             
@@ -157,6 +161,5 @@ function moveSnake(boxes) {
                                 
 
 //Sqrt of grid size
-// let rows = Math.sqrt(boxesLen);
 // let columns = Math.sqrt(boxesLen);
-// console.log(rows, columns)
+// console.log(rows)

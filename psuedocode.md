@@ -72,6 +72,10 @@ Notes:
 
 Big Problems
     separating into rows and columns
+        the width is 10
+        the height is 10
+        We can access the widt of the first row by sqrt the grid length
+        we can access all row ends by dividing the total length by the sqrt
 
 
 
