@@ -37,7 +37,11 @@ function generateSnake(){
     
  //Generate Random Apple
 function randomApple(){
-        apple = Math.floor(Math.random() * boxes.length)
+        let randApple = Math.floor(Math.random() * boxes.length)
+        while(currentSnake.includes(randApple)){
+           randApple = Math.floor(Math.random() * boxes.length)
+        }
+        apple = randApple;
         boxes[apple].classList.add('apple')
         console.log(boxes[apple])
     }
@@ -65,6 +69,7 @@ function moveSnake() {
         boxes[tail].classList.remove('snake')
         currentSnake.unshift(currentSnake[0] + direction)
         boxes[currentSnake[0]].classList.add('snake')
+        
         
         //Apple Eating
         if(boxes[currentSnake[0]].classList.contains('apple')){
