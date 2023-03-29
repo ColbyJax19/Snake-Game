@@ -7,7 +7,8 @@ let score = 0;
 let direction = 1
 let rowLength = Math.sqrt(boxes.length);
 let interval;
-let speedUp = .5;
+let intervalSpeed;;
+let speedUp = .9;
 let apple = 0;
 let tail;
 
@@ -20,30 +21,46 @@ function init(){
     boxes[apple].classList.remove('apple')
     clearInterval(interval)
     console.log(interval)
-    interval = 1000;
+    intervalSpeed = 1000;
     randomApple()
-    setInterval(moveSnake, interval)
-    console.log(interval)
+    interval = setInterval(moveSnake, intervalSpeed)
+    console.log(intervalSpeed)
     }
     
     
-    //Generate Snake
-    function generateSnake(){
-        currentSnake = currentSnake.forEach(i => boxes[i].setAttribute('class', 'snake'));
-        console.log(currentSnake)
-    }
+ //Generate Snake
+function generateSnake(){
+    currentSnake = currentSnake.forEach(i => boxes[i].setAttribute('class', 'snake'));
+    console.log(currentSnake)
+}
     
     
-    //Generate Random Apple
-    function randomApple(){
-            apple = Math.floor(Math.random() * boxes.length)
-            boxes[apple].classList.add('apple')
-            console.log(boxes[apple])
+ //Generate Random Apple
+function randomApple(){
+        apple = Math.floor(Math.random() * boxes.length)
+        boxes[apple].classList.add('apple')
+        console.log(boxes[apple])
     }
     
     
 
-    function moveSnake() {
+function moveSnake() {
+        //wall variables
+        const topWall = currentSnake[0] < rowLength;
+        const bottomWall = currentSnake[0] >= (rowLength * (rowLength - 1));
+        const rightWall = currentSnake[0] % rowLength === rowLength - 1;
+        const leftWall = currentSnake[0] % rowLength === 0;
+        //hit params
+        if (
+        (direction === -rowLength && topWall) || // hitting the top wall
+        (direction === rowLength && bottomWall) || // hitting the bottom wall
+        (direction === 1 && rightWall) || // hitting the right wall
+        (direction === -1 && leftWall) || // hitting the left wall
+        boxes[currentSnake[0] + direction].classList.contains('snake')
+    ) {
+        alert(`Game over! Your score is ${score}`);
+        return clearInterval(interval);
+    }
         const tail = currentSnake.pop()
         boxes[tail].classList.remove('snake')
         currentSnake.unshift(currentSnake[0] + direction)
@@ -63,9 +80,11 @@ function init(){
             scoreHeader.textContent = score;
             //generate new apple
             randomApple()
-            interval = interval * speedUp
-            setInterval(moveSnake, interval)
-            console.log(interval)
+            clearInterval(interval)
+            //Speed up snake
+            intervalSpeed = intervalSpeed * speedUp
+            interval = setInterval(moveSnake, intervalSpeed)
+            console.log(intervalSpeed)
         }
     }
     
@@ -78,21 +97,30 @@ function init(){
             const pressedKey = e.key;
             switch (pressedKey) {
                 case "ArrowLeft":
+                case 'a':
                     direction = -1
                     break;
                     case "ArrowUp":
+                    case 'w':                      
                         direction = -rowLength
                         break;
                         case "ArrowRight":
+                        case 'd':
                             direction = +1
                             break;
                             case "ArrowDown":
+                            case 's':
                                 direction = +rowLength
+                                break;
                             }
                         }
                     }
                     
-                    
+    
+    //Disable opposite side movement
+    function disableReverseMoves(){
+
+    }
                     
                     
                     
