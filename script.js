@@ -1,4 +1,4 @@
-let currentSnake = [50,49,48];
+let currentSnake = [53,52,51];
 let scoreHeader = document.querySelector('.score span')
 let start = document.querySelector('.start')
 let boxes = document.querySelectorAll('.box')
@@ -11,7 +11,9 @@ let intervalSpeed;;
 let speedUp = .9;
 let apple = 0;
 let tail;
-
+let sound = document.getElementById('audio')
+let bell = document.getElementById('start-bell')
+let bite = document.getElementById('bite')
 
 
 
@@ -20,11 +22,10 @@ function init(){
     currentSnake.forEach(index => boxes[index].classList.remove('snake'))
     boxes[apple].classList.remove('apple')
     clearInterval(interval)
-    console.log(interval)
     intervalSpeed = 1000;
     randomApple()
     interval = setInterval(moveSnake, intervalSpeed)
-    console.log(intervalSpeed)
+    bell.play()
     }
     
     
@@ -89,7 +90,7 @@ function moveSnake() {
             //Speed up snake
             intervalSpeed = intervalSpeed * speedUp
             interval = setInterval(moveSnake, intervalSpeed)
-            console.log(intervalSpeed)
+            bite.play()
         }
     }
     
@@ -103,29 +104,37 @@ function moveSnake() {
             switch (pressedKey) {
                 case "ArrowLeft":
                 case 'a':
+                    if(direction !== 1){
                     direction = -1
+                    sound.play();
+                    }
                     break;
-                    case "ArrowUp":
-                    case 'w':                      
-                        direction = -rowLength
-                        break;
-                        case "ArrowRight":
-                        case 'd':
-                            direction = +1
-                            break;
-                            case "ArrowDown":
-                            case 's':
-                                direction = +rowLength
-                                break;
+                case "ArrowUp":
+                case 'w':                      
+                    if(direction !== rowLength){
+                    direction = -rowLength
+                    sound.play();
+                    }
+                break;
+                case "ArrowRight":
+                case 'd':
+                    if(direction !== -1){
+                        direction = +1
+                        sound.play();
+                    }
+                break;
+                case "ArrowDown":
+                case 's':
+                    if(direction !== -rowLength){
+                        direction = +rowLength
+                        sound.play();
+                    }
+                    break;
                             }
                         }
                     }
                     
-    
-    //Disable opposite side movement
-    function disableReverseMoves(){
 
-    }
                     
                     
                     
