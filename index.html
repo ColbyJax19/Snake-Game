@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Snake</title>
     <link rel="stylesheet" href="app.css">
     <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
     <script defer src="script.js"></script>
@@ -14,29 +14,17 @@
     
     
     <div class="game-container">
-        
-        <div class="title" id="title">
-            <h2>Snake</h2>
+        <div class="header">
+            <div class="title" id="title">
+                <h2>Snake</h2>
+            </div>
+            <div class="score">
+                <h3>Score: <span>0</span></h3>
+            </div>
+            <div class="button">
+                <button class="start">Start Game</button>
+            </div>
         </div>
-        <div class="score">
-            <h3>Score: <span>0</span></h3>
-        </div>
-        <div class="button">
-            <button class="start">Start Game</button>
-        </div>
-
-<audio id="audio" controls style="display:none">
-    <source src="Whip-Swoosh.mp3" type="audio/mpeg"> Your browser does not support the audio element.
-</audio>
-
-<audio id="start-bell" controls style="display:none">
-    <source src="start-bell.mp3" type="audio/mpeg"> Your browser does not support the audio element.
-</audio>
-
-<audio id="bite" controls style="display:none">
-    <source src="bite.mp3" type="audio/mpeg"> Your browser does not support the audio element.
-</audio>
-
 
 
         <div class="grid">
@@ -141,8 +129,26 @@
             <div class="box"></div>
             <div class="box"></div>
         </div>
+        <div id="score-display">
+          <h1></h1>  
+        </div>
     </div>
     
+    <audio id="audio" controls style="display:none">
+        <source src="sounds/Whip-Swoosh.mp3" type="audio/mpeg"> Your browser does not support the audio element.
+    </audio>
+    
+    <audio id="start-bell" controls style="display:none">
+        <source src="sounds/start-bell.mp3" type="audio/mpeg"> Your browser does not support the audio element.
+    </audio>
+    
+    <audio id="bite" controls style="display:none">
+        <source src="sounds/bite.mp3" type="audio/mpeg"> Your browser does not support the audio element.
+    </audio>
+
+    <audio id="death" controls style="display:none">
+        <source src="sounds/death-sound.mp3" type="audio/mpeg"> Your browser does not support the audio element.
+    </audio>
     
 </body>
 </html>

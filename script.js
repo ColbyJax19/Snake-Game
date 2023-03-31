@@ -14,6 +14,8 @@ let tail;
 let sound = document.getElementById('audio')
 let bell = document.getElementById('start-bell')
 let bite = document.getElementById('bite')
+let death = document.getElementById('death')
+let scoreDisplay = document.getElementById('score-display')
 
 
 
@@ -23,8 +25,9 @@ function init(){
     boxes[apple].classList.remove('apple')
     clearInterval(interval)
     intervalSpeed = 1000;
-    randomApple()
     interval = setInterval(moveSnake, intervalSpeed)
+    randomApple()
+    hideFinalScore()
     bell.play()
     }
     
@@ -32,7 +35,6 @@ function init(){
  //Generate Snake
 function generateSnake(){
     currentSnake = currentSnake.forEach(i => boxes[i].setAttribute('class', 'snake'));
-    console.log(currentSnake)
 }
     
     
@@ -47,7 +49,12 @@ function randomApple(){
         console.log(boxes[apple])
     }
     
-    
+function toggleScoreDisplay() {
+        if(scoreDisplay.style.display == 'block')
+            scoreDisplay.style.display = 'none';
+        else
+            score.style.display = 'block';
+        } 
 
 function moveSnake() {
         //wall variables
@@ -63,7 +70,8 @@ function moveSnake() {
         (direction === -1 && leftWall) || // hitting the left wall
         boxes[currentSnake[0] + direction].classList.contains('snake')
     ) {
-        alert(`Game over! Your score is ${score}`);
+        showFinalScore()
+        death.play()
         return clearInterval(interval);
     }
         const tail = currentSnake.pop()
@@ -134,8 +142,15 @@ function moveSnake() {
                         }
                     }
                     
-
-                    
+function hideFinalScore(){
+    scoreDisplay.hidden = true;
+}
+ 
+function showFinalScore(){
+    scoreDisplay.textContent = (`Game over! Your score is ${score}`)
+    scoreDisplay.style.color = 'red'
+    scoreDisplay.hidden = false;
+}
                     
                     
                     // Movement Functionality
