@@ -28,8 +28,8 @@ Step 4
         a. startGame Function : Appends a snake (snake class to divs) 4-6 spaces long randomly in the array and begins movement.
         b. Attach an event listener to start button with a click listener and the startGame Function as an arg.
         c. snakeMovement function : write out parameters for snake movement speed. For this I need to learn how to move through arrays
- *           in a timed fashion. Is this where I would put movement speed escalation? Probably
- *       d. generateApple Function : Randomly append an apple on one of the array blocks
+        in a timed fashion. Is this where I would put movement speed escalation? Probably
+        d. generateApple Function : Randomly append an apple on one of the array blocks
         e. eatApple Function : When the snake enters the same array as the apple, push a class to the end of the snake array and delete the apple, while re-running the generateApple function. Also score++  and run speed increase function. 
 
 Step 5
@@ -67,19 +67,7 @@ Tracking pivot block for snake movements
 
 
 
-Notes:
 
-
-Big Problems
-    separating into rows and columns
-        the width is 10
-        the height is 10
-        We can access the widt of the first row by sqrt the grid length
-        we can access all row ends by dividing the total length by the sqrt
-
-
-
-    snake mvmnt on every click or keystroke
 
 
     
