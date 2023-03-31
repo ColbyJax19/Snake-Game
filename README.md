@@ -1,3 +1,12 @@
+
+
+![Snake Wireframe](https://user-images.githubusercontent.com/107650551/229223419-f583e917-d4a8-4ea3-9e95-20719ccf8cc3.png)
+
+
+
+
+
+
 Goal: To code the game Snake from Nokia
 
 Step 1
