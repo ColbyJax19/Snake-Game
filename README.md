@@ -1,6 +1,6 @@
 # Snake Game
 
-## This project is inspired by the classic game "Snake" originally debuted on the Nokie flip phone. 
+## This project is inspired by the classic game "Snake" originally debuted on the Nokia flip phone. 
 
 ## Goal: To code the game Snake from Nokia
 
