@@ -1,5 +1,7 @@
 # Snake Game
 
+Game Link : https://colbyjax19.github.io/Snake-Game/
+
 ## This project is inspired by the classic game "Snake" originally debuted on the Nokia flip phone. 
 
 ## Goal: To code the game Snake from Nokia
